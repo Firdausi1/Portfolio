@@ -1,0 +1,19 @@
+.nav{
+    min-height: 10vh;
+    background-color: #101820ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav .MuiSvgIcon-root{
+    color: white;
+}
+
+.nav__left{
+    margin-left: 30px;
+}
+
+.nav__right{
+    margin-right: 30px;
+}
