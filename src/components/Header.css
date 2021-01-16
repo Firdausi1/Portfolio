@@ -29,12 +29,18 @@
 	margin-left: 20px;
 }
 
-.header button{
+.header__button{
 	border: 1px solid #fee715ff;
 	background-color: #101820ff;
 	color: #fee715ff;
 	padding: 15px 30px 15px 30px;
 	margin-top: 10px;
+}
+
+.header__button:hover{
+	border: 1px solid #fee715ff;
+	background-color: #fee715ff;
+	color: #101820ff;
 }
 
 .active {

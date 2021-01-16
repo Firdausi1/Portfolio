@@ -20,7 +20,7 @@ const Header = () => {
 					<p className="header__description">
 						I'm a Nigerian based Front-End & ReactJS Developer/Freelancer.
 					</p>
-					<button>View Works</button>
+					<button className="header__button">View Works</button>
 				</div>
 				<div className="header__socials">
 					<TwitterIcon />
