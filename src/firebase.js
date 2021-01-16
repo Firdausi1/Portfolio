@@ -5,13 +5,12 @@ import 'firebase/firestore';
 import Axios from 'axios';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyB8dftJ6bOSTZ8Y7Pe3B_INlUK5oiby4h0",
-    authDomain: "portfolio-bfdab.firebaseapp.com",
-    projectId: "portfolio-bfdab",
-    storageBucket: "portfolio-bfdab.appspot.com",
-    messagingSenderId: "118909895459",
-    appId: "1:118909895459:web:cd08a6bfc18652b67a8296",
-    measurementId: "G-R5YWVCYH1L"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: "1:118909895459:web:cd08a6bfc18652b67a8296"
   };
   // Initialize Firebase
 

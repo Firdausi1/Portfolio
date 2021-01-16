@@ -9,7 +9,7 @@ const functions = require("firebase-functions");
 // });
 const nodemailer = require("nodemailer");
 const cors = require("cors")({
-	origin: true,
+	origin: true
 });
 const gmailEmail = functions.config().gmail.email;
 const gmailPassword = functions.config().gmail.password;
@@ -30,11 +30,11 @@ exports.submit = functions.https.onRequest((req, res) => {
 	res.set("Access-Control-Max-Age", "3600");
 
 	if (req.method === "OPTIONS") {
-		res.status(204).send("");
+		res.end();
 	} else {
 		cors(req, res, () => {
 			if (req.method !== "POST") {
-				return
+				return;
 			}
 
 			const mailOptions = {
