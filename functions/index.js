@@ -7,50 +7,52 @@ const functions = require("firebase-functions");
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-const nodemailer = require('nodemailer')
-const cors = require('cors')({
-  origin: true
-})
-const gmailEmail = functions.config().gmail.email
-const gmailPassword = functions.config().gmail.password
+const nodemailer = require("nodemailer");
+const cors = require("cors")({
+	origin: true,
+});
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
 
 const mailTransport = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: gmailEmail,
-    pass: gmailPassword,
-  },
-})
+	service: "gmail",
+	auth: {
+		user: gmailEmail,
+		pass: gmailPassword,
+	},
+});
 
 exports.submit = functions.https.onRequest((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', '*')
+	res.set("Access-Control-Allow-Origin", "*");
+	res.set("Access-Control-Allow-Credentials", "true");
+	res.set("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+	res.set("Access-Control-Allow-Headers", "Content-Type");
+	res.set("Access-Control-Max-Age", "3600");
 
-  if (req.method === 'OPTIONS') {
-    res.end()
-  } else {
-    cors(req, res, () => {
-      if (req.method !== 'POST') {
-        return
-      }
+	if (req.method === "OPTIONS") {
+		res.status(204).send("");
+	} else {
+		cors(req, res, () => {
+			if (req.method !== "POST") {
+				return
+			}
 
-      const mailOptions = {
-        from: req.body.email,
-        replyTo: req.body.email,
-        to: gmailEmail,
-        subject: `${req.body.name} just messaged me from my website`,
-        text: req.body.message,
-        html: `<p>${req.body.message}</p>`,
-      }
+			const mailOptions = {
+				from: req.body.email,
+				replyTo: req.body.email,
+				to: gmailEmail,
+				subject: `${req.body.name} just messaged me from my website`,
+				text: req.body.message,
+				html: `<p>${req.body.message}</p>`,
+			};
 
-      return mailTransport.sendMail(mailOptions).then(() => {
-        console.log('New email sent to:', gmailEmail)
-        res.status(200).send({
-          isEmailSend: true
-        })
-        return
-      })
-    })
-  }
-})
+			return mailTransport.sendMail(mailOptions).then(() => {
+				console.log("New email sent to:", gmailEmail);
+				res.status(200).send({
+					isEmailSend: true,
+				});
+				return;
+			});
+		});
+	}
+});
