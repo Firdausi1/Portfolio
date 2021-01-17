@@ -9,35 +9,37 @@ const functions = require("firebase-functions");
 // });
 const nodemailer = require("nodemailer");
 const cors = require("cors")({
-	origin: "*"
+	origin: true,
 });
 const gmailEmail = functions.config().gmail.email;
 const gmailPassword = functions.config().gmail.password;
 
 const mailTransport = nodemailer.createTransport({
-	service: "gmail",
+	host: "smtp.gmail.com",
+	port: 465,
+  secure: true,
 	auth: {
 		user: gmailEmail,
 		pass: gmailPassword,
-	},
+    },
+    tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+      }
 });
 
 exports.submit = functions.https.onRequest((req, res) => {
-
-  cors(req, res, () => {
-	res.set("Access-Control-Allow-Origin", "*");
-	res.set("Access-Control-Allow-Credentials", "true");
-	res.set("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
-	res.set("Access-Control-Allow-Headers", "Content-Type");
-	res.set("Access-Control-Max-Age", "3600");
+	res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+	res.setHeader("Access-Control-Allow-Methods", "POST, GET", "OPTION");
+	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
 	if (req.method === "OPTIONS") {
 		res.end();
 	} else {
+		cors(req, res, () => {
 			if (req.method !== "POST") {
 				return;
 			}
-
 			const mailOptions = {
 				from: req.body.email,
 				replyTo: req.body.email,
@@ -47,14 +49,13 @@ exports.submit = functions.https.onRequest((req, res) => {
 				html: `<p>${req.body.message}</p>`,
 			};
 
-			return mailTransport.sendMail(mailOptions).then(() => {
-				console.log("New email sent to:", gmailEmail);
-				res.status(200).send({
-					isEmailSend: true,
-				});
-				return;
+			return mailTransport.sendMail(mailOptions, function (error, info) {
+				if (error) {
+					console.log(error);
+				} else {
+					console.log("Email sent: " + info.res);
+				}
 			});
-  }
-  
-});
+		});
+	}
 });
