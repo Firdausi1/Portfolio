@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "./Nav.css";
 import CodeIcon from "@material-ui/icons/Code";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -18,10 +19,10 @@ function Nav() {
 			</div>
 			{navLinks ? (
 				<ul className="nav__links nav__list">
-					<li>Home</li>
-					<li>About</li>
-					<li>Portfolio</li>
-					<li>Contact</li>
+					<li><NavLink to="/" exact activeClassName="active">Home</NavLink></li>
+					{/* <li><NavLink to="/about">About</NavLink></li> */}
+					<li><NavLink to="/portfolio">Portfolio</NavLink></li>
+					<li><NavLink to="/contact">Contact</NavLink></li>
 				</ul>
 			) : (
 				" "

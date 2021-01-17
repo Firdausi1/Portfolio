@@ -10,6 +10,17 @@
 	color: white;
 }
 
+li a{
+	color: white;
+  }
+
+.active{
+	width: 100%;
+	color: white;
+	border-bottom: 1px solid white;
+
+}
+
 .nav__left {
 	margin-left: 30px;
 }

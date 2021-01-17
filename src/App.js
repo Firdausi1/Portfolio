@@ -11,19 +11,27 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 
 function App() {
-
 	return (
 		<Router>
 			<div className="app">
-				<Nav/>
-				<Header />
+				<Nav />
 				<Switch>
-					<Route path="/">
+					<Route path="/" exact>
+						<Header />
+						<About/>
+						<Portfolio/>
+						<Contact/>
+					</Route>
+					{/* <Route path="/about" exact>
 						<About />
+					</Route> */}
+					<Route path="/portfolio" exact>
 						<Portfolio />
-						{/* <Experience /> */}
+					</Route>
+					<Route path="/contact" exact>
 						<Contact />
 					</Route>
+					{/* <Experience /> */}
 				</Switch>
 				<Footer />
 			</div>
