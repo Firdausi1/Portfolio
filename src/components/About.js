@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./About.css";
 import EmailIcon from "@material-ui/icons/Email";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -6,6 +6,23 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import { Link } from "react-router-dom";
 
 const About = () => {
+	const [slide, setSlide] = useState(false);
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			window.onscroll = () => {
+				let currentScrollPos = window.pageYOffset;
+				let maxScroll = document.body.scrollHeight - window.innerHeight;
+				// console.log(maxScroll)
+				if (currentScrollPos > 0 && currentScrollPos < maxScroll) {
+					setSlide(true);
+					// console.log(currentScrollPos)
+				} else {
+					setSlide(false);
+				}
+			};
+		}
+	}, []);
 	return (
 		<section id="about" className="about">
 			<div className="about__container">
@@ -42,29 +59,33 @@ const About = () => {
 						</Link>
 					</div>
 				</div>
-				<div className="about__skills">
-					<h2>SKILLS</h2>
-					<h3>HTML</h3>
-					<div className="about__skillContainer">
-						<div className=" skill about__skill1"></div>
+				{slide ? (
+					<div className="about__skills">
+						<h2>SKILLS</h2>
+						<h3>HTML</h3>
+						<div className="about__skillContainer">
+							<div className=" skill about__skill1"></div>
+						</div>
+						<h3>CSS</h3>
+						<div className="about__skillContainer">
+							<div className=" skill about__skill2"></div>
+						</div>
+						<h3>JAVASCRIPT</h3>
+						<div className="about__skillContainer">
+							<div className=" skill about__skill3"></div>
+						</div>
+						<h3>REACTJS</h3>
+						<div className="about__skillContainer">
+							<div className=" skill about__skill4"></div>
+						</div>
+						<h3>FIREBASE</h3>
+						<div className="about__skillContainer">
+							<div className=" skill about__skill5"></div>
+						</div>
 					</div>
-					<h3>CSS</h3>
-					<div className="about__skillContainer">
-						<div className=" skill about__skill2"></div>
-					</div>
-					<h3>JAVASCRIPT</h3>
-					<div className="about__skillContainer">
-						<div className=" skill about__skill3"></div>
-					</div>
-					<h3>REACTJS</h3>
-					<div className="about__skillContainer">
-						<div className=" skill about__skill4"></div>
-					</div>
-					<h3>FIREBASE</h3>
-					<div className="about__skillContainer">
-						<div className=" skill about__skill5"></div>
-					</div>
-				</div>
+				) : (
+					" "
+				)}
 			</div>
 		</section>
 	);

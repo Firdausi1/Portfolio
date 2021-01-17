@@ -11,6 +11,7 @@
 
 .btn-primary {
 	width: 150px;
+	cursor: pointer;
 	text-decoration: none;
 	text-align: center;
 	background-color: #fee715ff;
@@ -63,27 +64,39 @@
 	width: 95%;
 	background-color: #282828;
 	height: 100%;
+	animation: slide 2s;
 }
 .about__skill2 {
 	width: 90%;
 	background-color: #282828;
 	height: 100%;
+	animation: slide 2s;
 }
 .about__skill3 {
 	width: 75%;
 	background-color: #282828;
 	height: 100%;
+	animation: slide 2s;
 }
 .about__skill4 {
 	width: 65%;
 	background-color: #282828;
 	height: 100%;
+	animation: slide 2s;
 }
 .about__skill5 {
 	width: 50%;
 	background-color: #282828;
 	height: 100%;
+	animation: slide 2s;
 }
 .about__skills div {
 	margin-bottom: 20px;
+}
+
+@keyframes slide {
+	0% {
+		opacity: 0;
+		width: 0;
+	}
 }
