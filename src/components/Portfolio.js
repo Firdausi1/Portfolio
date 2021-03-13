@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import "./Portfolio.css";
 import FlipMove from "react-flip-move";
@@ -8,8 +9,10 @@ const Portfolio = () => {
 			<div className="portfolio__body">
 				<div className="portfolio__text">
 					<h2>My Recent Work</h2>
-					<p>Here are a few projects I've worked on recently. Want to see more? Email me.
-</p>
+					<p>
+						Here are a few projects I've worked on recently. Want to see more?
+						Email me.
+					</p>
 				</div>
 				<div className="portfolio__container">
 					<div className="portfolio__box">
@@ -69,7 +72,7 @@ const Portfolio = () => {
 						</a>
 					</div>
 					<div className="portfolio__box">
-						<a href="https://thttps://stupefied-mcnulty-629e7d.netlify.app/">
+						<a href="https://stupefied-mcnulty-629e7d.netlify.app/">
 							<img
 								className="portfolio__image"
 								src="../../Screenshot 2021-01-15 at 18.51.28.png"
