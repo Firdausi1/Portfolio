@@ -61,10 +61,10 @@ const Portfolio = () => {
 						</a>
 					</div>
 					<div className="portfolio__box">
-						<a href="https://tinder-clone-b9ec9.web.app/">
+						<a href="https://soko-store-front.netlify.app/">
 							<img
 								className="portfolio__image"
-								src="../../Screenshot 2020-09-22 at 21.56.35.png"
+								src="../../Screenshot 2021-04-15 at 21.48.02.png"
 							/>
 							<div className="portfolio__hover">
 								<h5>click to view</h5>
