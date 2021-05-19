@@ -82,6 +82,17 @@ const Portfolio = () => {
 							</div>
 						</a>
 					</div>
+					<div className="portfolio__box">
+						<a href="https://9ijakids-game-list.netlify.app/">
+							<img
+								className="portfolio__image"
+								src="../../Screenshot 2021-05-19 at 15.18.38.png"
+							/>
+							<div className="portfolio__hover">
+								<h5>click to view</h5>
+							</div>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
