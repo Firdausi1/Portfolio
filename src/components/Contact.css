@@ -56,3 +56,9 @@
     bottom: 0;
     left: 5vw;
  }
+
+ @media (max-width: 425px){
+     .contact__form{
+         width: 80%;
+     }
+ }

@@ -1,5 +1,4 @@
 .portfolio{
-    height: 100vh;
     background-color: #101820ff;
     color: white;
     display: grid;
@@ -67,4 +66,13 @@
 
 .portfolio__box:hover img{
     opacity: 0.5;
+}
+
+@media (max-width: 425px){
+    .portfolio__box{
+        width: 100%;
+    }
+    .portfolio{
+        padding: 50px 30px;
+    }
 }

@@ -1,5 +1,4 @@
 .about {
-	height: 100vh;
 	display: grid;
 	place-items: center;
 }
@@ -98,5 +97,27 @@
 	0% {
 		opacity: 0;
 		width: 0;
+	}
+}
+
+@media (max-width: 425px){
+	.about{
+		padding: 50px 30px;
+	}
+	.about__description{
+		width: 100%;
+	}
+	.about__skills{
+		width: 100%;
+		margin-top: 50px;
+	}
+	.about__skills h2{
+		text-align: center;
+	}
+	.about__container{
+		flex-direction: column;
+	}
+	.about__description h2{
+		text-align: center;
 	}
 }
