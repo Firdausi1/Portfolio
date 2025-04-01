@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
@@ -6,10 +6,9 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Sphere, MeshDistortMaterial, OrbitControls } from '@react-three/drei';
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 // Floating Animation
@@ -34,65 +33,77 @@ import * as THREE from "three";
 //     </Text>
 //   );
 // }
+const AnimatedSphere = () => {
+  const mesh = useRef();
+  const [distortAmount, setDistortAmount] = useState(0.3);
+  const [hovered, setHovered] = useState(false);
 
-// Particle Effect
-function Particles() {
-  const particleCount = 500;
-  const pointsRef = useRef();
+  useEffect(() => {
+    document.body.style.cursor = hovered ? "pointer" : "auto";
+  }, [hovered]);
 
-  // Generate initial positions inside a circle
-  const particles = useMemo(() => {
-    const positions = [];
-    for (let i = 0; i < particleCount; i++) {
-      const angle = Math.random() * Math.PI * 2; // Random angle
-      const radius = Math.random() * 1; // Random radius within circle
-
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
-      const z = (Math.random() - 0.5) * 0.2; // Slight depth variation
-
-      positions.push(x, y, z);
-    }
-    return new Float32Array(positions);
-  }, []);
-
-  // Animate particles to move randomly within the circle
-  useFrame(({ clock }) => {
-    if (pointsRef.current) {
-      const time = clock.getElapsedTime();
-      const positions = pointsRef.current.geometry.attributes.position.array;
-
-      for (let i = 0; i < particleCount; i++) {
-        const index = i * 3;
-
-        // Random movement formula
-        positions[index] += (Math.random() - 0.5) * 0.07; // Small random change in X
-        positions[index + 1] += (Math.random() - 0.5) * 0.01; // Small random change in Y
-
-        // Keep particles within the circular boundary
-        const radius = Math.sqrt(
-          positions[index] ** 2 + positions[index + 1] ** 2
-        );
-        if (radius > 1) {
-          positions[index] *= 0.9;
-          positions[index + 1] *= 0.9;
-        }
-      }
-      pointsRef.current.geometry.attributes.position.needsUpdate = true;
+  useFrame(() => {
+    if (mesh.current) {
+      mesh.current.rotation.x += 0.003;
+      mesh.current.rotation.y += 0.003;
     }
   });
 
   return (
-    <points ref={pointsRef}>
-      <bufferGeometry attach="geometry">
+    <Sphere
+      ref={mesh}
+      args={[1, 100, 100]}
+      scale={[2, 2, 2]}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      onClick={() => {
+        setDistortAmount(distortAmount === 0.3 ? 0.6 : 0.3);
+      }}
+    >
+      <MeshDistortMaterial
+        color="#fee715"
+        attach="material"
+        distort={distortAmount}
+        speed={2}
+        roughness={0.4}
+        metalness={0.3}
+      />
+    </Sphere>
+  );
+};
+
+// Particle Effect
+function Particles() {
+  const particles = useRef();
+
+  useFrame(() => {
+    if (particles.current) {
+      particles.current.rotation.x += 0.0003;
+      particles.current.rotation.y += 0.0005;
+    }
+  });
+
+  const particlesCount = 500;
+  const positionArray = new Float32Array(particlesCount * 3);
+
+  for (let i = 0; i < particlesCount; i++) {
+    const i3 = i * 3;
+    positionArray[i3] = (Math.random() - 0.5) * 10;
+    positionArray[i3 + 1] = (Math.random() - 0.5) * 10;
+    positionArray[i3 + 2] = (Math.random() - 0.5) * 10;
+  }
+
+  return (
+    <points ref={particles}>
+      <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          array={particles}
-          count={particleCount}
+          count={particlesCount}
+          array={positionArray}
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.01} color="#FFD700" transparent={true} />
+      <pointsMaterial size={0.02} color="#fee715" sizeAttenuation={true} />
     </points>
   );
 }
@@ -142,30 +153,30 @@ const Header = () => {
             I'm a Nigerian based Front-End & ReactJS Developer/Freelancer.
           </p>
           <Link to={"/portfolio"} className="header__button">
-            View Works
+            View my Works
           </Link>
         </div>
         <div className="three__animation">
           <Canvas
             camera={{ position: [0, 0, 5], fov: 75 }}
             style={{
-              position: "absolute",
-              zIndex: 10,
-              height: "100%",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "70%",
+              height: "100vh",
+              width: "100%",
             }}
           >
-            <ambientLight intensity={0.5} />
-            <pointLight position={[5, 5, 5]} />
+            <ambientLight intensity={0.2} />
+            <directionalLight position={[10, 10, 5]} intensity={1} />
+            <pointLight position={[-10, -10, -5]} intensity={0.5} />
+            <AnimatedSphere />
             <Particles />
-            {/* <Stars radius={10} depth={50} count={5000} factor={4} /> */}
-            <OrbitControls enableZoom />
+            <OrbitControls
+              enablePan
+              enableZoom={false}
+              autoRotate
+              autoRotateSpeed={0.5}
+              maxPolarAngle={Math.PI / 2}
+              minPolarAngle={Math.PI / 2}
+            />
           </Canvas>
         </div>
         <div className="header__socials">

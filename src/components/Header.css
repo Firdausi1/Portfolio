@@ -141,6 +141,12 @@ li a:active {
   animation: slideY 2s;
 }
 
+.three__animation {
+  position: absolute;
+  z-index: -10;
+  inset: 0;
+}
+
 @keyframes slideX {
   0% {
     opacity: 0;
