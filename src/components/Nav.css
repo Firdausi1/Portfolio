@@ -66,3 +66,9 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 425px){
+  .nav__list {
+    gap: 8px;
+  }
+}
