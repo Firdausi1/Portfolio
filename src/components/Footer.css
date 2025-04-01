@@ -14,3 +14,7 @@
     justify-content: space-evenly;
     min-width: 20%;
 }
+
+.footer__socials a {
+  color: #fff;
+}

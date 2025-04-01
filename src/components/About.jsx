@@ -6,23 +6,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import { Link } from "react-router-dom";
 
 const About = () => {
-  const [slide, setSlide] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.onscroll = () => {
-        let currentScrollPos = window.pageYOffset;
-        let maxScroll = document.body.scrollHeight - window.innerHeight;
-        // console.log(maxScroll)
-        if (currentScrollPos > 0 && currentScrollPos < maxScroll) {
-          setSlide(true);
-          // console.log(currentScrollPos)
-        } else {
-          setSlide(false);
-        }
-      };
-    }
-  }, []);
+ 
   return (
     <section id="about" className="about">
       <div className="about__container">
@@ -59,7 +43,6 @@ const About = () => {
             </Link>
           </div>
         </div>
-        {slide ? (
           <div className="about__skills">
             <h2>SKILLS</h2>
             <h3>HTML</h3>
@@ -83,9 +66,6 @@ const About = () => {
               <div className=" skill about__skill5"></div>
             </div>
           </div>
-        ) : (
-          " "
-        )}
       </div>
     </section>
   );

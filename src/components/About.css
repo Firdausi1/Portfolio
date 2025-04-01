@@ -1,7 +1,7 @@
 .about {
 	display: grid;
 	place-items: center;
-  padding: 40px 0;
+  height: 80vh;
 }
 .about__container {
 	display: flex;

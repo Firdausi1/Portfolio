@@ -19,19 +19,32 @@ function Nav() {
       </div>
       {navLinks ? (
         <ul className="nav__links nav__list">
-          <li>
+          <li className="nav__item">
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               Home
             </NavLink>
+          </li>{" "}
+          <li className="nav__item">
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              About
+            </NavLink>
           </li>
           {/* <li><NavLink to="/about">About</NavLink></li> */}
-          <li>
-            <NavLink to="/portfolio">Portfolio</NavLink>
+          <li className="nav__item">
+            <NavLink
+              to="/portfolio"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Portfolio
+            </NavLink>
           </li>
-          <li>
+          <li className="nav__item">
             <NavLink to="/contact">Contact</NavLink>
           </li>
         </ul>
