@@ -1,6 +1,7 @@
 .about {
 	display: grid;
 	place-items: center;
+  padding: 40px 0;
 }
 .about__container {
 	display: flex;
@@ -72,19 +73,19 @@
 	animation: slide 2s;
 }
 .about__skill3 {
-	width: 75%;
+	width: 90%;
 	background-color: #282828;
 	height: 100%;
 	animation: slide 2s;
 }
 .about__skill4 {
-	width: 65%;
+	width: 85%;
 	background-color: #282828;
 	height: 100%;
 	animation: slide 2s;
 }
 .about__skill5 {
-	width: 50%;
+	width: 85%;
 	background-color: #282828;
 	height: 100%;
 	animation: slide 2s;
