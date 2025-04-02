@@ -41,7 +41,7 @@
   color: #282828;
 }
 
-.about p {
+.about__text {
   margin-bottom: 20px;
 }
 
@@ -58,37 +58,46 @@
   height: 20px;
   background-color: #c4c4c4;
   position: relative;
+  overflow: hidden;
+}
+
+.about__skillContainer .skill {
+  animation: slide 2s;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0;
+}
+.progress__text {
+  padding-right: 10px;
 }
 
 .about__skill1 {
   width: 95%;
   background-color: #282828;
   height: 100%;
-  animation: slide 2s;
 }
 .about__skill2 {
   width: 90%;
   background-color: #282828;
   height: 100%;
-  animation: slide 2s;
 }
 .about__skill3 {
   width: 90%;
   background-color: #282828;
   height: 100%;
-  animation: slide 2s;
 }
 .about__skill4 {
   width: 85%;
   background-color: #282828;
   height: 100%;
-  animation: slide 2s;
 }
 .about__skill5 {
   width: 85%;
   background-color: #282828;
   height: 100%;
-  animation: slide 2s;
 }
 .about__skills div {
   margin-bottom: 20px;
@@ -100,6 +109,15 @@
     width: 0;
   }
 }
+
+/* @keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 0;
+  }
+} */
 
 @media (max-width: 425px) {
   .about {

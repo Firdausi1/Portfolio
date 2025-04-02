@@ -13,7 +13,7 @@ const About = () => {
         <div className="about__container">
           <div className="about__description">
             <h2>ABOUT ME</h2>
-            <p>
+            <p className="about__text">
               Born in 1997, I’m a web-developer based in Nigeria. Graduated with
               a Computer Science degree from Northwest University, Kano. I have
               rich experience in development of responsive web applications
@@ -48,23 +48,29 @@ const About = () => {
             <h2>SKILLS</h2>
             <h3>HTML</h3>
             <div className="about__skillContainer">
-              <div className=" skill about__skill1"></div>
+              <div className=" skill about__skill1">
+                <p className="progress__text"> 95%</p>
+              </div>
             </div>
             <h3>CSS</h3>
             <div className="about__skillContainer">
-              <div className=" skill about__skill2"></div>
+              <div className=" skill about__skill2">
+              <p className="progress__text"> 90%</p></div>
             </div>
             <h3>JAVASCRIPT</h3>
             <div className="about__skillContainer">
-              <div className=" skill about__skill3"></div>
+              <div className=" skill about__skill3">
+              <p className="progress__text"> 85%</p></div>
             </div>
             <h3>REACTJS</h3>
             <div className="about__skillContainer">
-              <div className=" skill about__skill4"></div>
+              <div className=" skill about__skill4">
+              <p className="progress__text"> 80%</p></div>
             </div>
             <h3>Typescript</h3>
             <div className="about__skillContainer">
-              <div className=" skill about__skill5"></div>
+              <div className=" skill about__skill5">
+              <p className="progress__text"> 80%</p></div>
             </div>
           </div>
         </div>
