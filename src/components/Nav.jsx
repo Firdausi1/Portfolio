@@ -15,7 +15,9 @@ function Nav() {
   return (
     <div className="nav">
       <div className="nav__left">
-        <CodeIcon />
+        <Link to={"/"}>
+          <CodeIcon />
+        </Link>
       </div>
       {navLinks ? (
         <ul className="nav__links nav__list">

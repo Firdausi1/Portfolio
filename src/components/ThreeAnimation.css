@@ -1,0 +1,10 @@
+.three__animation {
+  position: absolute;
+  z-index: -10;
+  inset: 0;
+}
+@media (max-width: 425px) {
+  .three__animation {
+    display: none;
+  }
+}
